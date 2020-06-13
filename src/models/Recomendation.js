@@ -1,4 +1,5 @@
 const {Schema,model} = require ('mongoose');
+const { uuid } = require('uuidv4');
 
 const RecomendationSchema = new Schema({
   name:String,
@@ -9,6 +10,13 @@ const RecomendationSchema = new Schema({
   
 },{
   timestamps:true,
+  toJSON:{
+    virtuals:true 
+ }
+})
+
+RecomendationSchema.virtual('transactionId').get(function() {
+  return uuid();
 })
 
 module.exports = model('Recomendation',RecomendationSchema);
