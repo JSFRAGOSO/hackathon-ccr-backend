@@ -14,7 +14,7 @@ const ReminderSchema = new Schema({
 })
 
 ReminderSchema.virtual('thumbnail_url').get(function() {
-  return `http://10.0.2.2:3333/files/${this.thumbnail}`;
+  return `${process.env.APP_URL}/files/${this.thumbnail}`;
 })
 
 module.exports = model('Reminder',ReminderSchema);
