@@ -1,4 +1,5 @@
 const Recomendation  = require('../models/Recomendation');
+const { uuid } = require('uuidv4');
 
 module.exports = {
     async show(req,res){
@@ -33,7 +34,8 @@ module.exports = {
       if(max.quantity === 0){ 
         return res.json(
           {
-            message:`Desculpe, não entendi o que você disse. Tente pesquisar por: restaurante, comida, gasolina, posar`
+            message:`Desculpe, não entendi o que você disse. Tente pesquisar por: restaurante, comida, gasolina, posar`,
+            transactionId:uuid(),
           })
       }
       const mostMatchingRecomendation = recomendations.find(recomendation => recomendation._id === max.id)
